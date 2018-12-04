@@ -4,7 +4,7 @@
 [![Coverage Status](https://coveralls.io/repos/github/carlnordenfelt/lulo-plugin-secret/badge.svg?branch=master)](https://coveralls.io/github/carlnordenfelt/lulo-plugin-secret?branch=master)
 [![Known Vulnerabilities](https://snyk.io/test/github/carlnordenfelt/lulo-plugin-secret/badge.svg?targetFile=package.json)](https://snyk.io/test/github/carlnordenfelt/lulo-plugin-secret?targetFile=package.json)
 
-lulu Secret generates a secret and stores it securely in AWS SSM Parameter Store.
+lulo Secret generates a secret and stores it securely in AWS SSM Parameter Store.
 
 lulo Secret is a [lulo](https://github.com/carlnordenfelt/lulo) plugin
 
@@ -33,12 +33,12 @@ The Custom Resource Lambda requires the following permissions for this plugin to
         "ssm:getParameter",
         "ssm:deleteParameter"
    ],
-   "Resource": "*"
+   "Resource": "*" // Can be restricted to the paramter names used
 }
 ```
 
 In addition to the above, the plugin will need access to any custom KMS keys used (encrypt/decrypt).
-If you use the AWS default key no additional key permissions is needed. 
+If you use the AWS default key no additional key permission is needed. 
 
 ## License
 [The MIT License (MIT)](/LICENSE)
