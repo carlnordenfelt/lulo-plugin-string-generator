@@ -101,9 +101,10 @@ function deleteParameter(name, callback) {
         Name: name
     };
     ssm.deleteParameter(params, function (error) {
-        if (error) {
+        if (error && error.code !== 'ParameterNotFound') {
             log.error('Unable to delete parameter', { params: params, error: error });
+            return callback(error);
         }
-        return callback(error);
+        return callback();
     });
 }

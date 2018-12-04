@@ -204,7 +204,7 @@ describe('Index', function () {
     describe('Delete', function () {
         it('should succeed ', function (done) {
             subject.delete(event, {}, function (error, result) {
-                expect(error).to.equal(null);
+                expect(error).to.equal(undefined);
                 expect(result).to.equal(undefined);
                 expect(deleteParameterStub.calledOnce).to.equal(true);
 
@@ -222,6 +222,21 @@ describe('Index', function () {
                 expect(error).to.equal('deleteParameterStub');
                 expect(result).to.equal(undefined);
                 expect(deleteParameterStub.calledOnce).to.equal(true);
+
+                expect(putParameterStub.called).to.equal(false);
+                expect(getParameterStub.called).to.equal(false);
+                done();
+            });
+        });
+
+        it('should not fail on ParameterNotFound error', function (done) {
+            deleteParameterStub.yields({ code: 'ParameterNotFound' });
+            subject.delete(event, {}, function (error, result) {
+                expect(error).to.equal(undefined);
+                expect(result).to.equal(undefined);
+                expect(deleteParameterStub.calledOnce).to.equal(true);
+
+                expect(deleteParameterStub.firstCall.args[0].Name).to.equal(event.ResourceProperties.Name);
 
                 expect(putParameterStub.called).to.equal(false);
                 expect(getParameterStub.called).to.equal(false);
