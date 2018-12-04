@@ -16,6 +16,7 @@ npm install lulo-plugin-secret --save
 ## Usage
 ### Properties
 * Name: The name of the Parameter. Required
+* SecretLength: The length of the secrets (Bytes). Default is 128 which is the equivalsnt of a 256 character string.
 * For additional configuration options, please see [the aws sdk](https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/SSM.html#putParameter-property)
 
 

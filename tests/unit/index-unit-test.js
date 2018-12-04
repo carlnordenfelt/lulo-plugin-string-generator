@@ -82,6 +82,7 @@ describe('Index', function () {
                 expect(putParameterStub.firstCall.args[0].Description).to.equal(event.ResourceProperties.Description);
                 expect(putParameterStub.firstCall.args[0].Overwrite).to.equal(true);
                 expect(putParameterStub.firstCall.args[0].KeyId).to.equal(undefined);
+                expect(putParameterStub.firstCall.args[0].Value.length).to.equal(128 * 2);
 
                 expect(getParameterStub.called).to.equal(false);
                 expect(deleteParameterStub.called).to.equal(false);
@@ -89,9 +90,10 @@ describe('Index', function () {
             });
         });
 
-        it('should succeed with custom KeyId and default Description', function (done) {
+        it('should succeed with custom KeyId and default Description and custom length', function (done) {
             delete event.ResourceProperties.Description;
             event.ResourceProperties.KeyId = 'MyKey';
+            event.ResourceProperties.SecretLength = 256;
             subject.create(event, {}, function (error, result) {
                 expect(error).to.equal(null);
                 expect(result.physicalResourceId).to.equal('MyName');
@@ -99,6 +101,7 @@ describe('Index', function () {
 
                 expect(putParameterStub.firstCall.args[0].KeyId).to.equal(event.ResourceProperties.KeyId);
                 expect(putParameterStub.firstCall.args[0].Description).to.contain('lulo');
+                expect(putParameterStub.firstCall.args[0].Value.length).to.equal(256 * 2);
 
                 expect(getParameterStub.called).to.equal(false);
                 expect(deleteParameterStub.called).to.equal(false);
