@@ -34,7 +34,6 @@
     },
     "homepage": "https://github.com/carlnordenfelt/lulo-plugin-string-generator",
     "devDependencies": {
-        "aws-sdk": "*",
         "chai": "^4.2.0",
         "coveralls": "^3.0.2",
         "eslint": "5.9.0",
