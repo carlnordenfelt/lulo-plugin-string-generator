@@ -4,9 +4,12 @@
 [![Coverage Status](https://coveralls.io/repos/github/carlnordenfelt/lulo-plugin-string-generator/badge.svg?branch=master)](https://coveralls.io/github/carlnordenfelt/lulo-plugin-string-generator?branch=master)
 [![Known Vulnerabilities](https://snyk.io/test/github/carlnordenfelt/lulo-plugin-string-generator/badge.svg?targetFile=package.json)](https://snyk.io/test/github/carlnordenfelt/lulo-plugin-string-generator?targetFile=package.json)
 
-lulo Secret generates a random string given the provided length.
+lulo String Generator generates a random string given the provided length.
 
-lulo Secret is a [lulo](https://github.com/carlnordenfelt/lulo) plugin
+Used together with `_NoEcho` it provdies a simple way to generate keys and passwords via CloudFormation.
+
+lulo String Generator is a [lulo](https://github.com/carlnordenfelt/lulo) plugin
+
 
 # Installation
 ```
