@@ -9,7 +9,7 @@ pub.validate = function (_event) {
 
 pub.create = function (event, _context, callback) {
     const length = event.ResourceProperties.Length || DEFAULT_STRING_LENGTH;
-    const string = crypto.randomBytes(length).toString('hex');
+    const string = crypto.randomBytes(parseInt(length)).toString('hex');
 
     const data = {
         String: string

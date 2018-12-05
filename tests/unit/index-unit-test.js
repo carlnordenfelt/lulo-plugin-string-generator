@@ -35,6 +35,15 @@ describe('Index', function () {
                 done();
             });
         });
+        it('should succeed with length as string', function (done) {
+            event.ResourceProperties.Length = '256';
+            subject.create(event, {}, function (error, result) {
+                expect(error).to.equal(null);
+                expect(result.physicalResourceId).to.equal(undefined);
+                expect(result.String.length).to.equal(256 * 2);
+                done();
+            });
+        });
     });
 
     describe('Update', function () {

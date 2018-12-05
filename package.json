@@ -2,7 +2,7 @@
     "name": "lulo-plugin-string-generator",
     "author": "carl@bynordenfelt.se",
     "description": "A Lulo plugin for creating random strings",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "license": "MIT",
     "scripts": {
         "clean": "rm -rf node_modules",
