@@ -1,8 +1,8 @@
 {
-    "name": "lulo-plugin-secret",
+    "name": "lulo-plugin-string-generator",
     "author": "carl@bynordenfelt.se",
-    "description": "A Lulo plugin for creating and securely storing secrets",
-    "version": "1.0.1",
+    "description": "A Lulo plugin for creating random strings",
+    "version": "1.0.0",
     "license": "MIT",
     "scripts": {
         "clean": "rm -rf node_modules",
@@ -19,7 +19,7 @@
     },
     "repository": {
         "type": "git",
-        "url": "https://github.com/carlnordenfelt/lulo-plugin-secret"
+        "url": "https://github.com/carlnordenfelt/lulo-plugin-string-generator"
     },
     "keywords": [
         "AWS",
@@ -27,12 +27,12 @@
         "Custom Resource",
         "Plugin",
         "Lulo",
-        "Secret"
+        "Random String"
     ],
     "issues": {
-        "url": "https://github.com/carlnordenfelt/lulo-plugin-secret/issues"
+        "url": "https://github.com/carlnordenfelt/lulo-plugin-string-generator/issues"
     },
-    "homepage": "https://github.com/carlnordenfelt/lulo-plugin-secret",
+    "homepage": "https://github.com/carlnordenfelt/lulo-plugin-string-generator",
     "devDependencies": {
         "aws-sdk": "*",
         "chai": "^4.2.0",

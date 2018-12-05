@@ -1,45 +1,47 @@
-# lulo-plugin-secret
-[![npm version](https://badge.fury.io/js/lulo-plugin-secret.svg)](https://badge.fury.io/js/lulo-plugin-secret)
-[![Build Status](https://travis-ci.org/carlnordenfelt/lulo-plugin-secret.svg?branch=master)](https://travis-ci.org/carlnordenfelt/lulo-plugin-secret)
-[![Coverage Status](https://coveralls.io/repos/github/carlnordenfelt/lulo-plugin-secret/badge.svg?branch=master)](https://coveralls.io/github/carlnordenfelt/lulo-plugin-secret?branch=master)
-[![Known Vulnerabilities](https://snyk.io/test/github/carlnordenfelt/lulo-plugin-secret/badge.svg?targetFile=package.json)](https://snyk.io/test/github/carlnordenfelt/lulo-plugin-secret?targetFile=package.json)
+# lulo-plugin-string-generator
+[![npm version](https://badge.fury.io/js/lulo-plugin-string-generator.svg)](https://badge.fury.io/js/lulo-plugin-string-generator)
+[![Build Status](https://travis-ci.org/carlnordenfelt/lulo-plugin-string-generator.svg?branch=master)](https://travis-ci.org/carlnordenfelt/lulo-plugin-string-generator)
+[![Coverage Status](https://coveralls.io/repos/github/carlnordenfelt/lulo-plugin-string-generator/badge.svg?branch=master)](https://coveralls.io/github/carlnordenfelt/lulo-plugin-string-generator?branch=master)
+[![Known Vulnerabilities](https://snyk.io/test/github/carlnordenfelt/lulo-plugin-string-generator/badge.svg?targetFile=package.json)](https://snyk.io/test/github/carlnordenfelt/lulo-plugin-string-generator?targetFile=package.json)
 
-lulo Secret generates a secret and stores it securely in AWS SSM Parameter Store.
+lulo Secret generates a random string given the provided length.
 
 lulo Secret is a [lulo](https://github.com/carlnordenfelt/lulo) plugin
 
 # Installation
 ```
-npm install lulo-plugin-secret --save
+npm install lulo-plugin-string-generator --save
 ```
 
 ## Usage
 ### Properties
-* Name: The name of the Parameter. Required
-* SecretLength: The length of the secrets (Bytes). Default is 128 which is the equivalent of a 256 character string.
-* For additional configuration options, please see [the aws sdk](https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/SSM.html#putParameter-property)
+* Length: The length of the string (Bytes). Default is 128 which is the equivalent of a 256 character string.
+* _NoEcho: _NoEcho is a CustomResource feature that Lulo implements. Use this if you are generating strings that are sensitive, such as keys or passwords, to ensure that they do no leak. Simple set `_NoEcho` to `true`.
 
+### Updates
+Since the only property that can be changed is the length the secret will be regenerated for any update.
 
 ### Return Values
-When the logical ID of this resource is provided to the Ref intrinsic function, Ref returns the Name of the Parameter.
+`!GetAtt 'MyStringResource.String'` will give the string.
+
+### Example
+```
+Resources:
+    MyString:
+        Type: Custom::StringPlugin
+        Properties:
+            ServiceToken: lambda:arn
+    MySecretString:
+        Type: Custom::StringPlugin
+        Properties:
+            ServiceToken: lambda:arn
+            Length: 256
+            _NoEcho: true
+```
 
 
 ### Required IAM Permissions
-The Custom Resource Lambda requires the following permissions for this plugin to work:
-```
-{
-   "Effect": "Allow",
-   "Action": [
-        "ssm:putParameter",
-        "ssm:getParameter",
-        "ssm:deleteParameter"
-   ],
-   "Resource": "*" // Can be restricted to the paramter names used
-}
-```
-
-In addition to the above, the plugin will need access to any custom KMS keys used (encrypt/decrypt).
-If you use the AWS default key no additional key permission is needed. 
+The Custom Resource does not require any permissions
 
 ## License
 [The MIT License (MIT)](/LICENSE)
